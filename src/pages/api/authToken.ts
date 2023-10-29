@@ -13,7 +13,8 @@ export default async function handler(
   const params = new URLSearchParams();
   params.append("grant_type", "authorization_code");
   params.append("redirect_uri", "Caryn_Ligon-CarynLig-cardva-aydfzye");
-  params.append("code", code as string);
+  params.append("code", encodeURIComponent(code as string));
+  console.log("code", encodeURIComponent(code as string));
   const ebayRes = await fetch(
     "https://api.sandbox.ebay.com/identity/v1/oauth2/token",
     {
