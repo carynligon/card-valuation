@@ -36,7 +36,7 @@ export default async function handler(
     },
   };
   console.log("REQ", req.query);
-  const authToken = req.query.token;
+  const authToken = decodeURIComponent(req.query.token as string);
   console.log("authToken", authToken);
   const params = new URLSearchParams();
   const ebayRes = await fetch(

@@ -34,7 +34,9 @@ const AuthSuccessPage = () => {
   }, []);
 
   const addItem = async () => {
-    const localRes = await fetch(`/api/addItem?token=${authToken}}`);
+    const localRes = await fetch(
+      `/api/addItem?token=${encodeURIComponent(authToken)}}`
+    );
     const localItem = await localRes.json();
     console.log("localItem", localItem);
   };
