@@ -12,11 +12,15 @@
     "@types/node": "20.8.7",
     "@types/react": "18.2.31",
     "@types/react-dom": "18.2.14",
+    "ebay-oauth-nodejs-client": "^1.2.2",
     "eslint": "8.52.0",
     "eslint-config-next": "13.5.6",
     "next": "13.5.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@types/ebay-oauth-nodejs-client": "^1.2.2"
   }
 }
