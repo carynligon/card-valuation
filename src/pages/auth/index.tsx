@@ -16,8 +16,14 @@ export const getServerSideProps = async () => {
 
 const AuthComponent = ({ authUrl }: { authUrl: string }) => {
   console.log("got authUrl?", authUrl);
+  const split = authUrl.split("auth.ebay.com");
+  const sandboxUrl = `${split[0]}auth.sandbox.ebay.com${split[1]}`;
 
-  return <></>;
+  return (
+    <>
+      <a href={sandboxUrl}>Authorize ebay</a>
+    </>
+  );
 };
 
 export default AuthComponent;

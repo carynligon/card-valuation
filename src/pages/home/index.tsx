@@ -9,12 +9,6 @@ const getAuthToken = async () => {
   params.append("grant_type", "client_credentials");
   params.append("scope", "https://api.ebay.com/oauth/api_scope");
   try {
-    console.log(
-      "auth",
-      `Basic ${btoa(
-        process.env.EBAY_CLIENT_ID + ":" + process.env.EBAY_CLIENT_SECRET
-      )}`
-    );
     const res = await fetch(
       "https://api.sandbox.ebay.com/identity/v1/oauth2/token",
       {
