@@ -45,6 +45,7 @@ export default async function handler(
       method: "PUT",
       headers: {
         authorization: `Bearer ${authToken}`,
+        "content-type": "application/json",
       },
       body: JSON.stringify(item),
     }
