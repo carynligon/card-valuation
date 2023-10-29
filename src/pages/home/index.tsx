@@ -43,7 +43,7 @@ export const getStaticProps = async () => {
 const HomeComponent = ({ token }: { token: string }) => {
   const browse = async () => {
     const res = await fetch(
-      "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search?q=charizard&fieldgroups=ASPECT_REFINEMENTS",
+      "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search?q=gopro&fieldgroups=ASPECT_REFINEMENTS",
       {
         headers: {
           authorization: `Bearer ${token}`,
