@@ -9,12 +9,13 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   let token = "";
-  const code = req.query.code || "";
+  console.log("REQ", req.query);
+  const code = decodeURIComponent(req.query.code as string);
   const params = new URLSearchParams();
   params.append("grant_type", "authorization_code");
   params.append("redirect_uri", "Caryn_Ligon-CarynLig-cardva-aydfzye");
-  params.append("code", encodeURIComponent(code as string));
-  console.log("code", encodeURIComponent(code as string));
+  params.append("code", code);
+  console.log("code", code);
   const ebayRes = await fetch(
     "https://api.sandbox.ebay.com/identity/v1/oauth2/token",
     {
