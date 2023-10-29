@@ -7,6 +7,9 @@ const getAuthToken = async (code: string) => {
   params.append("redirect_uri", "Caryn_Ligon-CarynLig-cardva-aydfzye");
   params.append("code", code);
   try {
+    const localRes = await fetch(`/api/authToken?code=${code}`);
+    const localToken = await localRes.json();
+    console.log("localToken", localToken);
     const res = await fetch(
       "https://api.sandbox.ebay.com/identity/v1/oauth2/token",
       {
