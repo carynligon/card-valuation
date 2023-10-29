@@ -4,7 +4,7 @@ type ResponseData = {
   message: string;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
@@ -30,16 +30,17 @@ export default function handler(
           body: params,
         }
       );
-      console.log("res", res);
+      console.log("res222", res);
       const tokenResp = await res.json();
+      console.log("kkkkk", tokenResp);
       token = tokenResp.access_token;
     } catch (e) {
-      res.status(500).json({ message: "Oops!" });
+      res.status(500).json({ message: JSON.stringify(e) });
       console.log("error", e);
     }
   };
 
-  getAuthToken();
+  await getAuthToken();
 
   res.status(200).json({ message: token });
 }
