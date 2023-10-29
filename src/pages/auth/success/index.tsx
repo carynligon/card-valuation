@@ -1,3 +1,6 @@
+"use client";
+import { useEffect } from "react";
+
 const getAuthToken = async (code: string) => {
   const params = new URLSearchParams();
   params.append("grant_type", "authorization_code");
@@ -28,9 +31,14 @@ const getAuthToken = async (code: string) => {
 };
 
 const AuthSuccessPage = () => {
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get("code") || "";
-  getAuthToken(code);
+  useEffect(() => {
+    if (window && window.location) {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code") || "";
+      console.log("got code", code);
+      getAuthToken(code);
+    }
+  }, []);
 
   return <>Success!</>;
 };
