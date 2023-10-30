@@ -9,7 +9,7 @@ export const getServerSideProps = async () => {
 
   const authUrl = ebayAuthToken.generateUserAuthorizationUrl(
     "PRODUCTION",
-    "https%3A%2F%2Fapi.ebay.com%2Foauth%2Fapi_scope https:%3A%2F%2api.ebay.com%2oauth%2api_scope%2sell.account https:%3A%2F%2api.ebay.com%2oauth%2api_scope%2sell.inventory"
+    "https%3A%2F%2Fapi.sandbox.ebay.com%2Foauth%2Fapi_scope https:%3A%2F%2api.sandbox.ebay.com%2oauth%2api_scope%2sell.account https:%3A%2F%2api.sandbox.ebay.com%2oauth%2api_scope%2sell.inventory"
   );
   return { props: { authUrl } };
 };
