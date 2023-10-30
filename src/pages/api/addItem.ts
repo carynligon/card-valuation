@@ -39,6 +39,68 @@ export default async function handler(
   const authToken = decodeURIComponent(req.query.token as string);
   console.log("authToken", authToken);
   const params = new URLSearchParams();
+
+  const setupStuff = async () => {
+    const policy = {
+      categoryTypes: [
+        {
+          name: "ALL_EXCLUDING_MOTORS_VEHICLES",
+        },
+      ],
+      marketplaceId: "EBAY_US",
+      name: "D********g",
+      handlingTime: {
+        unit: "DAY",
+        value: "1",
+      },
+      shippingOptions: [
+        {
+          costType: "FLAT_RATE",
+          optionType: "DOMESTIC",
+          shippingServices: [
+            {
+              buyerResponsibleForShipping: "false",
+              freeShipping: "true",
+              shippingCarrierCode: "USPS",
+              shippingServiceCode: "USPSPriorityFlatRateBox",
+            },
+          ],
+        },
+      ],
+    };
+    const policyRes = await fetch(
+      "https://api.sandbox.ebay.com/sell/account/v1/fulfillment_policy",
+      {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${authToken}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(policy),
+      }
+    );
+    const policyJson = await policyRes.json();
+    console.log("policy", policyJson);
+  };
+
+  setupStuff();
+
+  const checkPerms = async () => {
+    const permsRes = await fetch(
+      "https://api.sandbox.ebay.com/sell/account/v1/privilege/",
+      {
+        headers: {
+          authorization: `Bearer ${authToken}`,
+          "content-type": "application/json",
+        },
+      }
+    );
+    const perms = await permsRes.json();
+    console.log("perms", perms);
+  };
+
+  checkPerms();
+
   const ebayRes = await fetch(
     "https://api.sandbox.ebay.com/sell/inventory/v1/inventory_item/12345678",
     {
