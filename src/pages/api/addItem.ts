@@ -75,6 +75,7 @@ export default async function handler(
         headers: {
           authorization: `Bearer ${authToken}`,
           "content-type": "application/json",
+          "Content-Language": "en-US",
         },
         body: JSON.stringify(policy),
       }
