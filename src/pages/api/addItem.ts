@@ -110,6 +110,7 @@ export default async function handler(
       headers: {
         authorization: `Bearer ${authToken}`,
         "content-type": "application/json",
+        "accept-language": "en-US",
       },
       body: JSON.stringify(item),
     }
