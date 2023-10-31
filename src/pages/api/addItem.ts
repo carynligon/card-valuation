@@ -83,6 +83,79 @@ export default async function handler(
     );
     const policyJson = await policyRes.json();
     console.log("policy", policyJson);
+
+    const fulfillmentPolicy = {
+      categoryTypes: [
+        {
+          name: "ALL_EXCLUDING_MOTORS_VEHICLES",
+        },
+      ],
+      marketplaceId: "EBAY_US",
+      name: "D********g",
+      handlingTime: {
+        unit: "DAY",
+        value: "1",
+      },
+      shippingOptions: [
+        {
+          costType: "FLAT_RATE",
+          optionType: "DOMESTIC",
+          shippingServices: [
+            {
+              buyerResponsibleForShipping: "false",
+              freeShipping: "true",
+              shippingCarrierCode: "USPS",
+              shippingServiceCode: "USPSPriorityFlatRateBox",
+            },
+          ],
+        },
+      ],
+    };
+    const fulfillmentPolicyRes = await fetch(
+      "https://api.sandbox.ebay.com/sell/account/v1/fulfillment_policy",
+      {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${authToken}`,
+          "content-type": "application/json",
+          "Content-Language": "en-US",
+          "accept-language": "en-US",
+        },
+        body: JSON.stringify(fulfillmentPolicy),
+      }
+    );
+    const fulfillmentPolicyJson = await fulfillmentPolicyRes.json();
+    console.log("fulfillmentPolicyJson", fulfillmentPolicyJson);
+
+    const paymentPolicy = {
+      name: "m********y",
+      marketplaceId: "EBAY_US",
+      categoryTypes: [
+        {
+          name: "ALL_EXCLUDING_MOTORS_VEHICLES",
+        },
+      ],
+      paymentMethods: [
+        {
+          paymentMethodType: "PERSONAL_CHECK",
+        },
+      ],
+    };
+    const paymentPolicyRes = await fetch(
+      "https://api.sandbox.ebay.com/sell/account/v1/fulfillment_policy",
+      {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${authToken}`,
+          "content-type": "application/json",
+          "Content-Language": "en-US",
+          "accept-language": "en-US",
+        },
+        body: JSON.stringify(paymentPolicy),
+      }
+    );
+    const paymentPolicyJson = await paymentPolicyRes.json();
+    console.log("paymentPolicyJson", paymentPolicyJson);
   };
 
   setupStuff();
